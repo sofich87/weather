@@ -1,6 +1,23 @@
 
 import { weather_data } from './data.js';
 
+/*let element = document.getElementById("dropdownMenuButton");
+
+    element.addEventListener('change', (event) => {
+        let ciudad= event.target.weather_data;
+
+        let padre = document.getElementsByClassName('dropdown-item');
+
+        padre=padre[0];
+        for (let clave of ciudad){
+            `<option>${clave['city']}</option>`
+            padre.innerHTML+=ciudad;
+            loadDayForecastData(ciudad);
+        }
+
+        
+    });*/
+
 let loadDayForecastData = () => {
     let [gye, ...other] = weather_data;
     let {city_code: city_code1, city: city1, date: date1, maxtemperature: maxtemperature1, mintemperature: mintemperature1, cloudiness: cloudiness1, wind: wind1, rainfall: rainfall1, forecast_today: forecastToday} = gye;
@@ -26,6 +43,31 @@ let loadDayForecastData = () => {
     let r=document.getElementById('rainfall');
     r.innerHTML =rainfall1;
 
+    let iconl=document.getElementById('late_icon');
+    iconl.innerHTML =forecastToday[0].icon;
+
+    let iconnight=document.getElementById('night_icon');
+    iconnight.innerHTML =forecastToday[1].icon;
+
+    let temp_late= document.getElementById('late_temperature');
+    temp_late.innerHTML=forecastToday[0].temperature;
+
+    let temp_night= document.getElementById('night_temperature');
+    temp_night.innerHTML=forecastToday[1].temperature;
+
+    let forecast_late= document.getElementById('late_forecast');
+    forecast_late.innerHTML=forecastToday[0].forecast;
+
+    let forecast_night= document.getElementById('night_forecast');
+    forecast_night.innerHTML=forecastToday[1].forecast;
+
+    let text_late= document.getElementById('late_text');
+    text_late.innerHTML=forecastToday[0].text;
+
+    let text_night= document.getElementById('night_text');
+    text_night.innerHTML=forecastToday[1].text;
+    
+
 }
 
 let loadWeekForecastData = () => {
@@ -49,11 +91,7 @@ let loadWeekForecastData = () => {
         </li>`
         padre.innerHTML+=forecastweek;
     }
-
-
-
 }
-
 
 loadDayForecastData();
 loadWeekForecastData();
